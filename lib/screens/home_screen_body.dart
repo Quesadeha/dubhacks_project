@@ -7,29 +7,21 @@ class HomeScreenBody extends StatefulWidget {
   State<HomeScreenBody> createState() => _HomeScreenBodyState();
 }
 
-class _HomeScreenBodyState extends State<HomeScreenBody>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+class _HomeScreenBodyState extends State<HomeScreenBody> {
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: const [
           Text(
-            "Beginning to our hackathon", 
+            "Home Screen!!", 
             style: TextStyle(
               fontSize: 14,
               color: Colors.red
