@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 
-class TodoScreenBody extends StatefulWidget {
-  const TodoScreenBody({Key? key}) : super(key: key);
+class UserScreenBody extends StatefulWidget {
+  const UserScreenBody({Key? key}) : super(key: key);
 
   @override
-  State<TodoScreenBody> createState() => _TodoScreenBodyState();
+  State<UserScreenBody> createState() => _UserScreenBodyState();
 }
 
-class _TodoScreenBodyState extends State<TodoScreenBody> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class _UserScreenBodyState extends State<UserScreenBody> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -20,7 +15,7 @@ class _TodoScreenBodyState extends State<TodoScreenBody> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
           Text(
-            "Todo Screen omg!!",
+            "User Screen!!",
             style: TextStyle(fontSize: 14, color: Colors.red),
           )
         ],

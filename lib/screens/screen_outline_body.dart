@@ -13,14 +13,23 @@ class _ScreenOutlineState extends State<ScreenOutline> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: constants.constantAppBar(context),
       body: constants.screens.elementAt(selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.white,
+        backgroundColor: constants.titleBarColor,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.view_list_rounded),label: ''),
           BottomNavigationBarItem(
-              icon: Icon(Icons.leaderboard), label: 'Leaderboard'),
+              icon: Icon(Icons.leaderboard),
+              label: ''),
           BottomNavigationBarItem(
-              icon: Icon(Icons.view_list_rounded), label: 'To Do'),
+              icon: Icon(Icons.mail,
+              ),
+              label: ''),
         ],
         currentIndex: selectedIndex,
         onTap: onItemTapped,
