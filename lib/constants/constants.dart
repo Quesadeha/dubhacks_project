@@ -144,24 +144,6 @@ List<Map<String, String>> news = [
     'posted': '6d ago - ',
     'author': 'Austin H. Lee',
   },
-  {
-    'title': '',
-    'content': '',
-    'posted': '',
-    'author': '',
-  },
-  {
-    'title': '',
-    'content': '',
-    'posted': '',
-    'author': '',
-  },
-  {
-    'title': '',
-    'content': '',
-    'posted': '',
-    'author': '',
-  },
 ];
 
 List<Text> defaultList = <Text>[

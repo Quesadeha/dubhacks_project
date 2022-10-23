@@ -13,6 +13,7 @@ class HomeScreenBody extends StatefulWidget {
 
 class _HomeScreenBodyState extends State<HomeScreenBody> {
   List<Map<String, String>> chores = constants.chores;
+  List<Map<String, String>> createdList = [];
   bool useTemplate = false;
   List<Widget> uiTodoList = [];
   List<Widget> customTodoList = [];
@@ -55,7 +56,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
               ),
             ),
             Visibility(
-                visible: Init.isNewAccount == true && useTemplate == false,
+                visible: Init.isNewAccount == true && useTemplate == false && createdList.isEmpty,
                 child: Column(
                   children: [
                     const SizedBox(
@@ -83,21 +84,6 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                     const SizedBox(
                       height: 10,
                     ),
-                    SizedBox(
-                      width: 250,
-                      height: 50,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Colors.green[400]!),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          'Create Todo List',
-                          style: constants.normalTextStyle(15, null),
-                        ),
-                      ),
-                    )
                   ],
                 )),
             SizedBox(
@@ -111,6 +97,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
               onPressed: () {
                 setState(() {
                   chores.add(chores[random.nextInt(7)]);
+                  createdList.add(chores[random.nextInt(7)]);
                 });
               },
               child: const Icon(Icons.add, color: Colors.white),
@@ -127,79 +114,85 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
   List<Widget> todoList() {
     List<Widget> todoList = [];
     if (Init.isNewAccount == false || useTemplate == true) {
-      for (int i = 0; i < chores.length; i++) {
-        todoList.add(Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: const Color.fromARGB(255, 159, 154, 154),
-              ),
-              borderRadius: const BorderRadius.all(Radius.circular(20))),
-          height: 65,
-          width: 400,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 10,
+      makeList(todoList, chores);
+    } else {
+      makeList(todoList, createdList);
+    }
+    return todoList;
+  }
+
+  List<Widget> makeList(List<Widget> todoList, List<Map<String, String>> list) {
+    for (int i = 0; i < list.length; i++) {
+      todoList.add(Container(
+        decoration: BoxDecoration(
+            border: Border.all(
+              color: const Color.fromARGB(255, 159, 154, 154),
+            ),
+            borderRadius: const BorderRadius.all(Radius.circular(20))),
+        height: 65,
+        width: 400,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                const SizedBox(
+                  width: 10,
+                ),
+                Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/${list[i]['photo']}'),
+                        fit: BoxFit.fill),
                   ),
-                  Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                          image:
-                              AssetImage('assets/images/${chores[i]['photo']}'),
-                          fit: BoxFit.fill),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    chores[i]['chore']!,
-                    style: constants.normalTextStyle(14, null),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        if (chores[i]['completed'] == 'false') {
-                          setState(() {
-                            chores[i]['completed'] = 'true';
-                          });
-                        }
-                      },
-                      icon: Icon(
-                        chores[i]['completed'] == 'true'
-                            ? Icons.done
-                            : Icons.indeterminate_check_box_outlined,
-                        size: 20,
-                      )),
-                  IconButton(
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  list[i]['chore']!,
+                  style: constants.normalTextStyle(14, null),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                IconButton(
                     onPressed: () {
-                      setState(() {
-                        chores.removeAt(i);
-                      });
+                      if (list[i]['completed'] == 'false') {
+                        setState(() {
+                          list[i]['completed'] = 'true';
+                        });
+                      }
                     },
-                    icon: const Icon(
-                      Icons.delete,
+                    icon: Icon(
+                      list[i]['completed'] == 'true'
+                          ? Icons.done
+                          : Icons.indeterminate_check_box_outlined,
                       size: 20,
-                    ),
+                    )),
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      list.removeAt(i);
+                    });
+                  },
+                  icon: const Icon(
+                    Icons.delete,
+                    size: 20,
                   ),
-                ],
-              )
-            ],
-          ),
-        ));
-        todoList.add(const SizedBox(
-          height: 10,
-        ));
-      }
+                ),
+              ],
+            )
+          ],
+        ),
+      ));
+      todoList.add(const SizedBox(
+        height: 10,
+      ));
     }
     return todoList;
   }

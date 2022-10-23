@@ -1,4 +1,3 @@
-import 'package:dubhacks_project/Init.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '/constants/constants.dart' as constants;
@@ -62,7 +61,6 @@ class _LeaderBoardScreenBodyState extends State<LeaderBoardScreenBody> {
 
   List<Widget> leaderList() {
     List<Widget> leads = [];
-    if (Init.isNewAccount == false) {
       leads.add(profile('jpage.jpeg', 'Jake Page', 1));
       leads.add(const SizedBox(
         height: 10,
@@ -86,7 +84,6 @@ class _LeaderBoardScreenBodyState extends State<LeaderBoardScreenBody> {
       ));
 
       leads.add(profile('czahn.jpg', 'Camille Zahn', 6));
-    }
     return leads;
   }
 
