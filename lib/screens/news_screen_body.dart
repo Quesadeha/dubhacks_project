@@ -23,7 +23,7 @@ class _NewsScreenBodyState extends State<NewsScreenBody> {
                   const SizedBox(
                     width: 20,
                   ),
-                  Text("Our Tasks", style: constants.normalTextStyle(30, null)),
+                  Text("Counseling", style: constants.normalTextStyle(30, null)),
                 ],
               ),
             ),
@@ -85,10 +85,13 @@ class _NewsScreenBodyState extends State<NewsScreenBody> {
         SizedBox(
           width: 300,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 constants.news[i]['title']!,
                 style: constants.normalTextStyle(20, null),
+                textAlign: TextAlign.start,
               ),
               Text(
               constants.news[i]['content']!,
