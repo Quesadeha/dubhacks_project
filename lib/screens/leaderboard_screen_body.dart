@@ -78,11 +78,6 @@ class _LeaderBoardScreenBodyState extends State<LeaderBoardScreenBody> {
         height: 10,
       ));
 
-      leads.add(profile('ethan.jpg', 'Ethan Torhjelm', 5));
-      leads.add(const SizedBox(
-        height: 10,
-      ));
-
       leads.add(profile('czahn.jpg', 'Camille Zahn', 6));
     return leads;
   }

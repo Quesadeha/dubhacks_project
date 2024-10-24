@@ -71,7 +71,7 @@ class StartupScreenBodyState extends State<StartupScreenBody> {
               child: ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.green[400]!),
+                      WidgetStateProperty.all<Color>(Colors.green[400]!),
                 ),
                 child: Text(
                   "Get Started Today",

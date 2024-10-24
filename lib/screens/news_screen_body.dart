@@ -18,58 +18,78 @@ class _NewsScreenBodyState extends State<NewsScreenBody> {
           children: [
             Align(
               alignment: Alignment.centerLeft,
-              child: Row(
-                children: [
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Text("Counseling", style: constants.normalTextStyle(30, null)),
-                ],
+              child: Padding(
+                padding:const EdgeInsets.only(left: 20.0),
+                child: Text(
+                  "Counseling",
+                  style: constants.normalTextStyle(30, null),
+                  softWrap: true,
+                  overflow: TextOverflow.visible,
+                ),  
               ),
             ),
             Align(
               alignment: Alignment.centerLeft,
-              child: Row(
-                children: [
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    DateFormat('EEEEE, MMMM d').format(DateTime.now()),
-                    style: constants.normalTextStyle(15, null),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black
-                ),
-              ),
-              child: SizedBox(
-                width: 300,
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Icon(Icons.search),
-                    Text(
-                      'Laundry Life Hacks...',
-                      style: constants.normalTextStyle(15, const Color.fromARGB(158, 147, 143, 143)),
-                    )
-                  ],
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child:Text(
+                  DateFormat('EEEEE, MMMM d').format(DateTime.now()),
+                  style: constants.normalTextStyle(15, null),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
+            // Container(
+            //   decoration: BoxDecoration(
+            //     border: Border.all(
+            //       color: Colors.black
+            //     ),
+            //   ),
+            //   child: SizedBox(
+            //     width: 300,
+            //     child: Row(
+            //       children: [
+            //         const Icon(Icons.search),
+            //         Text(
+            //           'Laundry Life Hacks...',
+            //           style: constants.normalTextStyle(15, const Color.fromARGB(158, 147, 143, 143)),
+            //           softWrap: true,
+            //           overflow: TextOverflow.visible,
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: SearchAnchor(
+                builder: (BuildContext context, SearchController controller) {
+                  return SearchBar(
+                    hintText: 'Search...',
+                    controller: controller,
+                    onTap: () {
+                      controller.openView();
+                    },
+                    onChanged: (_) {
+                      controller.openView();
+                    },
+                    leading: const Icon(Icons.search),
+                  );
+                },
+                suggestionsBuilder: (BuildContext context, SearchController controller) {
+                  return List<ListTile>.generate(2, (int index) {
+                    final String item = 'item $index';
+                    return ListTile(
+                      title: Text(item),
+                      onTap: () {
+                        controller.closeView(item);
+                      },
+                    );
+                  });
+                }
+              ),
             ),
             Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: news(),
             )
           ],
@@ -86,7 +106,7 @@ class _NewsScreenBodyState extends State<NewsScreenBody> {
           width: 300,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 constants.news[i]['title']!,
@@ -96,19 +116,12 @@ class _NewsScreenBodyState extends State<NewsScreenBody> {
               Text(
               constants.news[i]['content']!,
               style: constants.loginSmallTextStyle(15, null),
-            ),
-            Row(
-              children: [
-                Text(
-                  constants.news[i]['posted']!,
-                  style: constants.normalTextStyle(15, null),
-                ),
-                Text(
-                  constants.news[i]['author']!,
-                  style: constants.normalTextStyle(15, null),
-                ),
-              ],
-            )
+              ),
+              Text(
+                constants.news[i]['posted']! + constants.news[i]['author']!,
+                style: constants.normalTextStyle(15, null),
+                textAlign: TextAlign.start,
+              ),
             ],
           ),
         )

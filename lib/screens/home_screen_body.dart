@@ -66,10 +66,10 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                       width: 250,
                       height: 50,
                       child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Colors.green[400]!),
-                        ),
+                        // style: ButtonStyle(
+                        //   backgroundColor: MaterialStateProperty.all<Color>(
+                        //       Colors.green[400]!),
+                        // ),
                         onPressed: () {
                           setState(() {
                             useTemplate = true;

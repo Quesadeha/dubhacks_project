@@ -100,12 +100,6 @@ List<Map<String, String>> chores = [
     'completed' : 'false',
   },
   {
-    'photo' : 'ethan.jpg',
-    'name' : 'Ethan Torhjelm',
-    'chore' : 'Clean Bathroom',
-    'completed' : 'false',
-  },
-  {
     'photo' : 'jpage.jpeg',
     'name' : 'Jake Page',
     'chore' : 'Clean Toilet',
